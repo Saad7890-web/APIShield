@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    container_name: apishield_app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+    env_file:
+      - .env
+
+  db:
+    image: postgres:15
+    container_name: apishield_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: apishield
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7
+    container_name: apishield_redis
+    ports:
+      - "6379:6379"
