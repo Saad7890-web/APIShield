@@ -2,6 +2,9 @@ from fastapi import FastAPI
 from app.core.config import get_settings
 from app.api.v1 import health
 
+from app.api.v1 import organizations
+from app.api.v1 import api_keys
+
 settings = get_settings()
 
 app = FastAPI(
@@ -10,3 +13,5 @@ app = FastAPI(
 )
 
 app.include_router(health.router, prefix="/api/v1")
+app.include_router(organizations.router, prefix="/api/v1")
+app.include_router(api_keys.router, prefix="/api/v1")
