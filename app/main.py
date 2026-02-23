@@ -7,7 +7,14 @@ from app.api.v1 import api_keys
 
 from app.middleware.auth import APIKeyMiddleware
 from app.middleware.rate_limitter import RateLimiterMiddleware
+from app.core.seed import seed_plans
 
+
+@app.on_event("startup")
+async def startup_event():
+    await seed_plans()
+
+    
 settings = get_settings()
 
 app = FastAPI(
