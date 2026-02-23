@@ -10,17 +10,16 @@ from app.middleware.rate_limitter import RateLimiterMiddleware
 from app.core.seed import seed_plans
 
 
-@app.on_event("startup")
-async def startup_event():
-    await seed_plans()
-
-    
 settings = get_settings()
 
 app = FastAPI(
     title=settings.APP_NAME,
     version="1.0.0",
 )
+
+@app.on_event("startup")
+async def startup_event():
+    await seed_plans()
 
 app.add_middleware(APIKeyMiddleware)
 app.add_middleware(RateLimiterMiddleware)
