@@ -6,7 +6,7 @@ from app.api.v1 import organizations
 from app.api.v1 import api_keys
 
 from app.middleware.auth import APIKeyMiddleware
-from app.middleware.rate_limiter import RateLimiterMiddleware
+from app.middleware.rate_limitter import RateLimiterMiddleware
 
 settings = get_settings()
 
